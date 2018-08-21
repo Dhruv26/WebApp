@@ -36,4 +36,7 @@ export class LoginPage {
     this.navCtrl.push(SignUpPage)
   }
 
+  goToForgotPasswordPage() {
+    
+  }
 }

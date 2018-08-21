@@ -18,29 +18,45 @@ export class AboutPage {
   }
 
   ionViewDidLoad() {
-    navigator.geolocation.getCurrentPosition(
- 
-      (position) => {
+    this.showMap()
+    this.addMarker()
+  }
 
-          let options = {
-            center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-            zoom: 16,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          }
-          this.map = new google.maps.Map(this.mapElement.nativeElement, options);
+  showMap() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        let options = {
+          center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+          zoom: 16,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        this.map = new google.maps.Map(this.mapElement.nativeElement, options);
       },
       (error) => {
         console.log(error);
       }
-    );    
+    );
+  }
+  
+  addMarker() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        let marker = new google.maps.Marker({
+          map: this.map,
+          animation: google.maps.Animation.DROP,
+          position: latLng
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
     /*
-    this.map = new google.maps.Map(this.mapElement.nativeElement, {
-        zoom: 8,
-        center: posMaceio,
-        mapTypeId: 'roadmap'
+    google.maps.event.addListener(marker, 'click', () => {
+      this.events.publish('user:roomPage', roomID, sport, time, lat, long);
     });
-    this.map.setCenter(posMaceio);*/
-
+    */
   }
 
 
