@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { CreateReportPage } from '../create-report/create-report';
 
 declare const google;
 
@@ -59,10 +60,8 @@ export class AboutPage {
     */
   }
 
-
-
   createReport() {
-
+    this.navCtrl.push(CreateReportPage);
   }
 
 }
